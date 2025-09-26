@@ -2,7 +2,7 @@ import asyncio
 import random
 import requests
 from aiogram import Bot, Dispatcher, F
-from aiogram.types import Message
+from aiogram.types import Message, FSInputFile
 from aiogram.filters import Command
 from config import TG_TOKEN, API_KEY
 from keyboards.control_kb import control_kb
@@ -28,7 +28,10 @@ sending_active = False
 
 @dp.message(Command("start"))
 async def send_welcome(message: Message):
-    await message.answer(
+    photo = FSInputFile("media/banner.jpg")
+    await message.answer_photo(
+        photo=photo,
+        caption=
         "Привет! Я буду присылать тебе изображения.\n"
         "Контроль над запуском и остановкой доступен\n"
         "С помощью кнопок: ",
