@@ -27,8 +27,8 @@ async def get_start(message: Message):
     user_id = message.from_user.id
     subscribers.add(user_id)
     await message.answer(
-        text=f"✅ Ты подписан на рассылку цен BTC/USDT.\n"
-             f"({len(subscribers)} подписчиков всего)"
+        text=f"👨‍💻 Ты подписан на рассылку цен BTC/USDT.\n"
+             f"(Количество подписчиков: {len(subscribers)})"
     )
 
 
