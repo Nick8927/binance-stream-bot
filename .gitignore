@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+
+venv/
+.env
+
+.idea/
+*.iml
+
+*.log
+*.db
+.cache/
+pytest_cache/
+coverage/
+.mypy_cache/
+
+media/
