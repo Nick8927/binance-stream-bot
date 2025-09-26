@@ -10,7 +10,7 @@ from keyboards.control_kb import control_kb
 bot = Bot(token=TG_TOKEN)
 dp = Dispatcher()
 
-CHAT_ID = 7003041125
+CHAT_ID = [7003041125, 72832473]
 PIXABAY_API_KEY = API_KEY
 PIXABAY_API_URL = "https://pixabay.com/api/"
 
@@ -70,10 +70,17 @@ async def fetch_image():
 
 async def send_daily_image():
     image_url = await fetch_image()
-    if image_url:
-        await bot.send_photo(CHAT_ID, photo=image_url)
-    else:
-        await bot.send_message(CHAT_ID, "Извините, я не смог найти подходящую картинку.")
+    if not image_url:
+        for chat_id in CHAT_ID:
+            await bot.send_message(chat_id, "Извините, я не смог найти подходящую картинку.")
+        return
+
+    for chat_id in CHAT_ID:
+        try:
+            await bot.send_photo(chat_id, photo=image_url)
+        except Exception as e:
+            print(f"Ошибка при отправке картинки в чат {chat_id}: {e}")
+
 
 
 async def daily_loop():
